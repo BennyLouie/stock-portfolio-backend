@@ -1,9 +1,5 @@
 class UsersController < ApplicationController
-
-    def index
-        allUsers = User.all 
-        render json: allUsers
-    end
+    skip_before_action :require_login, only: [:create]
 
     def show
         render json: set_user
