@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    
+
     def index
         allUsers = User.all 
         render json: allUsers
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:id, :first_name, :last_name, :email, :password)
+        params.permit(:id, :first_name, :last_name, :email, :password, :balance)
     end
 
     def set_user
