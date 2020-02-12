@@ -27,4 +27,16 @@ class User < ApplicationRecord
     def full_name
         "#{self.first_name} #{self.last_name}"
     end
+
+    def stocks
+        stock_hash = {}
+        self.transactions.each { |s| 
+            if stock_hash[s.stock]
+                stock_hash[s.stock] += s.quantity
+            else
+                stock_hash[s.stock] = s.quantity
+            end 
+        }
+        return stock_hash
+    end
 end
