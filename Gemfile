@@ -5,8 +5,6 @@ ruby '2.6.1'
 
 # Resets my database IDs after every reseeding
 gem 'activerecord-reset-pk-sequence', '~> 0.2.0'
-# Using serializers
-gem 'active_model_serializers'
 # Enable JWT Auth
 gem "jwt", "~> 2.2"
 # Hide secret key
