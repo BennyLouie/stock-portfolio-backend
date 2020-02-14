@@ -4,11 +4,11 @@ class TransactionsController < ApplicationController
     def create
         # byebug
         transaction = Transaction.new(transaction_params)
-        if transaction.valid?
+        if transaction.validate
             transaction.save
             render json: transaction
         else
-            render json: {errors: transaction.errors.full_messages}
+            render json: {errors: 'The Transaction is Invalid'}
         end
 
     end

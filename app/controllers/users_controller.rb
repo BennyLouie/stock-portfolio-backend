@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-    skip_before_action :require_login, only: [:create]
+    skip_before_action :require_login, only: [:create, :show, :update]
 
-    # def show
-    #     render json: { user: set_user, stocks: set_user.stocks}
-    # end
+    def show
+        render json: { user: set_user, stocks: set_user.stocks}
+    end
 
     def create
         user = User.create(user_params)
@@ -13,6 +13,15 @@ class UsersController < ApplicationController
             render json: { user: user, jwt: token}
         else
             render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+        end
+    end
+
+    def update
+        set_user.update(user_params)
+        if set_user.valid?
+            render json: set_user
+        else
+            render json: { errors: set_user.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
