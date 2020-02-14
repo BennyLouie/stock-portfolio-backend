@@ -9,6 +9,8 @@ gem 'activerecord-reset-pk-sequence', '~> 0.2.0'
 gem "jwt", "~> 2.2"
 # Hide secret key
 gem 'dotenv-rails', "~> 2.7"
+#Rest-Client for fetching
+gem 'rest-client', '~> 2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
