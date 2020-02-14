@@ -1,8 +1,16 @@
 class TransactionsController < ApplicationController
+    skip_before_action :require_login, only: :create
     
     def create
-        transaction = Transaction.create(transaction_params)
-        
+        # byebug
+        transaction = Transaction.new(transaction_params)
+        if transaction.valid?
+            transaction.save
+            render json: transaction
+        else
+            render json: {errors: transaction.errors.full_messages}
+        end
+
     end
 
     private
