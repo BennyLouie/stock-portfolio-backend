@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-    skip_before_action :require_login, only: :create
+    # skip_before_action :require_login
     
     def create
         # byebug
