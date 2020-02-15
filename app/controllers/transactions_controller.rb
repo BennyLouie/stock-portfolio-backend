@@ -8,7 +8,7 @@ class TransactionsController < ApplicationController
             transaction.save
             render json: transaction
         else
-            render json: {errors: 'The Transaction is Invalid'}
+            render json: {errors: 'Invalid Transaction'}
         end
 
     end
