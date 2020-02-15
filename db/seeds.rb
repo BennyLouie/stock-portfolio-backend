@@ -14,10 +14,10 @@ Transaction.reset_pk_sequence
 benny = User.create(first_name: 'Benny', last_name: 'Louie', email: 'bennylouie1412@gmail.com', password: 'benben', balance: 5000.00)
 kelvin = User.create(first_name: 'Kelvin', last_name: 'Louie', email: 'kelvinlouie30814@gmail.com', password: 'benben', balance: 5000.00)
 
-buy1 = Transaction.create(user: benny, stock: 'IMB', price: '8.50', quantity: 6)
-buy2 = Transaction.create(user: benny, stock: 'IMB', price: '8.00', quantity: 3)
+buy1 = Transaction.create(user: benny, stock: 'IBM', price: '8.50', quantity: 6)
+buy2 = Transaction.create(user: benny, stock: 'IBM', price: '8.00', quantity: 3)
 buy3 = Transaction.create(user: benny, stock: 'FB', price: '8.50', quantity: 5)
 buy4 = Transaction.create(user: benny, stock: 'FB', price: '8.50', quantity: 9)
-buy5 = Transaction.create(user: benny, stock: 'DMV', price: '9.50', quantity: 2)
+buy5 = Transaction.create(user: benny, stock: 'ABC', price: '9.50', quantity: 2)
 
 puts "It has been seeded!!! 🍀"
