@@ -1,3 +1,5 @@
+require 'JSON'
+
 class User < ApplicationRecord
     has_many :transactions
     has_secure_password
@@ -30,13 +32,24 @@ class User < ApplicationRecord
 
     def stocks
         stock_hash = {}
-        self.transactions.each { |s| 
+        self.transactions.map { |s| 
             if stock_hash[s.stock]
                 stock_hash[s.stock] += s.quantity
             else
                 stock_hash[s.stock] = s.quantity
             end 
         }
-        return stock_hash
+        stockArr = []
+        stock_hash.keys.each { |s| 
+            stock = {}
+            raw = RestClient.get("https://sandbox.iexapis.com/stable/stock/#{s.downcase}/book?token=Tsk_75f8a00ef1ce400a9de5671974e6f490")
+            parsedRaw = JSON.parse(raw)
+            stock["name"] = s
+            stock["current_price"] = parsedRaw["quote"]["latestPrice"]
+            stock["opening_price"] = parsedRaw["quote"]["open"]
+            stock["shares"] = stock_hash[s]
+            stockArr << stock
+        }
+        return stockArr
     end
 end
