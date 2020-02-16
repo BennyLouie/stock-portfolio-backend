@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :require_login, only: :create
+    skip_before_action :require_login, only: [:create, :show]
 
     def show
         render json: { user: set_user, stocks: set_user.stocks}

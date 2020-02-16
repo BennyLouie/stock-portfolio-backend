@@ -6,13 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'JSON'
+
 User.destroy_all
 Transaction.destroy_all
 User.reset_pk_sequence
 Transaction.reset_pk_sequence
 
-benny = User.create(first_name: 'Benny', last_name: 'Louie', email: 'bennylouie1412@gmail.com', password: 'benben', balance: 5000.00)
-kelvin = User.create(first_name: 'Kelvin', last_name: 'Louie', email: 'kelvinlouie30814@gmail.com', password: 'benben', balance: 5000.00)
+
+raw = RestClient.get("https://sandbox.iexapis.com/stable/ref-data/iex/symbols?token=Tsk_75f8a00ef1ce400a9de5671974e6f490")
+parsedRaw = JSON.parse(raw)
+# byebug
+symbols = parsedRaw.map {|s| s["symbol"]}
+
+benny = User.create(first_name: 'Benny', last_name: 'Louie', email: 'bennylouie1412@gmail.com', password: 'benben', valid_symbols: symbols, balance: 5000.00)
+kelvin = User.create(first_name: 'Kelvin', last_name: 'Louie', email: 'kelvinlouie30814@gmail.com', password: 'benben', valid_symbols: symbols, balance: 5000.00)
 
 buy1 = Transaction.create(user: benny, stock: 'IBM', price: '8.50', quantity: 6)
 buy2 = Transaction.create(user: benny, stock: 'IBM', price: '8.00', quantity: 3)
