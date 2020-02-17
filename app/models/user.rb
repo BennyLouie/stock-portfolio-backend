@@ -46,7 +46,11 @@ class User < ApplicationRecord
             parsedRaw = JSON.parse(raw)
             stock["name"] = s
             stock["current_price"] = parsedRaw["quote"]["latestPrice"]
-            stock["opening_price"] = parsedRaw["quote"]["open"]
+            if !parsedRaw["quote"]["open"]
+                stock["opening_price"] = parsedRaw["quote"]["latestPrice"]
+            else
+                stock["opening_price"] = parsedRaw["quote"]["open"]
+            end
             stock["shares"] = stock_hash[s]
             stockArr << stock
         }
