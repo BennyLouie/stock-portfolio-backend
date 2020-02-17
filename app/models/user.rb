@@ -1,4 +1,4 @@
-require 'JSON'
+require 'json'
 
 class User < ApplicationRecord
     has_many :transactions
