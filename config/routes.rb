@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :transactions
-  resources :users
+  resources :transactions, only: :create
+  resources :users, only: [:show, :create, :update]
 
   post "/login", to: "auth#login"
   get "/auto_login", to: "auth#auto_login"
