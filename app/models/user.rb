@@ -39,21 +39,22 @@ class User < ApplicationRecord
                 stock_hash[s.stock] = s.quantity
             end 
         }
-        stockArr = []
-        stock_hash.keys.each { |s| 
-            stock = {}
-            raw = RestClient.get("https://sandbox.iexapis.com/stable/stock/#{s.downcase}/book?token=Tsk_75f8a00ef1ce400a9de5671974e6f490")
-            parsedRaw = JSON.parse(raw)
-            stock["name"] = s
-            stock["current_price"] = parsedRaw["quote"]["latestPrice"]
-            if !parsedRaw["quote"]["open"]
-                stock["opening_price"] = parsedRaw["quote"]["latestPrice"]
-            else
-                stock["opening_price"] = parsedRaw["quote"]["open"]
-            end
-            stock["shares"] = stock_hash[s]
-            stockArr << stock
-        }
-        return stockArr
+        return stock_hash
+        # stockArr = []
+        # stock_hash.keys.each { |s| 
+        #     stock = {}
+        #     raw = RestClient.get("https://sandbox.iexapis.com/stable/stock/#{s.downcase}/book?token=Tsk_75f8a00ef1ce400a9de5671974e6f490")
+        #     parsedRaw = JSON.parse(raw)
+        #     stock["name"] = s
+        #     stock["current_price"] = parsedRaw["quote"]["latestPrice"]
+        #     if !parsedRaw["quote"]["open"]
+        #         stock["opening_price"] = parsedRaw["quote"]["latestPrice"]
+        #     else
+        #         stock["opening_price"] = parsedRaw["quote"]["open"]
+        #     end
+        #     stock["shares"] = stock_hash[s]
+        #     stockArr << stock
+        # }
+        # return stockArr
     end
 end
