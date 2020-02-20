@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2020_02_12_202848) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
-    t.string "valid_symbols", array: true
     t.float "balance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
