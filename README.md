@@ -8,5 +8,5 @@ It primarily acts as a storage for user information, though I have also set fetc
 Steps to follow:
 
 1) `bundle` install the gems
-2) `rails db:create && rails db:migrate`
-3) `rails db:seed`
+2) `rails db:seed`
+3) `rails s`
