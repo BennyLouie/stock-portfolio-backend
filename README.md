@@ -7,6 +7,6 @@ It primarily acts as a storage for user information, though I have also set fetc
 
 Steps to follow:
 
-1) `bundle` install the gems
+1) `bundle`
 2) `rails db:seed`
 3) `rails s`
